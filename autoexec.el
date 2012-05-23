@@ -1,5 +1,6 @@
 (setq th-ffk-path '"~")
 
+
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
@@ -71,10 +72,14 @@
   (shell-command "setsid firefox")
   ) 
 
-
+(defun th-uisptool-info()
+  (interactive)
+  (shell-command "uisptool -i")
+)
 
 (defalias 'ffk    'th-find-file-kio )
 (defalias 'prof   'th-prof )
 (defalias 'epush  'th-emacs-push)
 (defalias 'epull  'th-emacs-pull)
 (defalias 'reload 'th-reload)
+(defalias 'uinf   'th-uisptool-info)

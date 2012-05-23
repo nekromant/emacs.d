@@ -1,5 +1,10 @@
 (setq th-ffk-path '"~")
 
+(cua-mode t)
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(transient-mark-mode 1) ;; No region when it is not highlighted
+(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+
 (defun th-find-file-kio ()
   (interactive)
   (let ((file-name
@@ -44,7 +49,7 @@
   (interactive)
   (message "Rerunning autoexec")
   (load-file "~/.emacs.d/autoexec.el");
-)
+  )
 
 
 (defun set_foxyproxy(state)
@@ -53,19 +58,19 @@
   (if (= 1 state)
       (setq oldstate '0))
   (if (= 0 state)
-    (setq oldstate '1))
+      (setq oldstate '1))
 
-  ;(message "%d" oldstate)
+					;(message "%d" oldstate)
   (let ((foxp
          (replace-regexp-in-string
           "[\n]+" ""
           (shell-command-to-string (concat "cat ~/.mozilla/firefox/profiles.ini|grep Path|cut -d\"=\" -f2")))))
     (message "Detected profile: " foxp)
     (message (concat "Setting firefox profile " foxp " proxy setting to %d" ) state))
-    (shell-command (concat "sed -i 's/user_pref(\"network.proxy.type\", " (number-to-string oldstate) ")/user_pref(\"network.proxy.type\", " (number-to-string state) ")/g' ~/.mozilla/firefox/" foxp "/prefs.js" ))
-    (shell-command "setsid firefox")
-) 
-  
+  (shell-command (concat "sed -i 's/user_pref(\"network.proxy.type\", " (number-to-string oldstate) ")/user_pref(\"network.proxy.type\", " (number-to-string state) ")/g' ~/.mozilla/firefox/" foxp "/prefs.js" ))
+  (shell-command "setsid firefox")
+  ) 
+
 
 
 (defalias 'ffk    'th-find-file-kio )

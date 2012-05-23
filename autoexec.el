@@ -24,6 +24,11 @@
         (shell-command (concat "kioexec emacsclient " file-name "&"))))))
 )
 
+(defun th-saveemacsenv()
+  (interactive)
+  (shell-command (concat "cd ~/.emacs.d; git commit -a -m \"Autocommit from emacs\""))
+)
+
 
 (defun th-prof (prof)
         (interactive "sProfile, plz: ")
@@ -31,5 +36,8 @@
 )
 
 
+
+
 (defalias 'ffk 'th-find-file-kio )
 (defalias 'prof 'th-prof )
+(defalias 'gk   'th-saveemacsenv)

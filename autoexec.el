@@ -40,7 +40,36 @@
   )
 
 
+(defun th-reload()
+  (interactive)
+  (message "Rerunning autoexec")
+  (load-file "~/.emacs.d/autoexec.el");
+)
+
+
+(defun set_foxyproxy(state)
+  (interactive "nS?:") 
+  (shell-command "killall firefox")
+  (if (= 1 state)
+      (setq oldstate '0))
+  (if (= 0 state)
+    (setq oldstate '1))
+
+  ;(message "%d" oldstate)
+  (let ((foxp
+         (replace-regexp-in-string
+          "[\n]+" ""
+          (shell-command-to-string (concat "cat ~/.mozilla/firefox/profiles.ini|grep Path|cut -d\"=\" -f2")))))
+    (message "Detected profile: " foxp)
+    (message (concat "Setting firefox profile " foxp " proxy setting to %d" ) state))
+    (shell-command (concat "sed -i 's/user_pref(\"network.proxy.type\", " (number-to-string oldstate) ")/user_pref(\"network.proxy.type\", " (number-to-string state) ")/g' ~/.mozilla/firefox/" foxp "/prefs.js" ))
+    (shell-command "setsid firefox")
+) 
+  
+
+
 (defalias 'ffk    'th-find-file-kio )
 (defalias 'prof   'th-prof )
 (defalias 'epush  'th-emacs-push)
 (defalias 'epull  'th-emacs-pull)
+(defalias 'reload 'th-reload)

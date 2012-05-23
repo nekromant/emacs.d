@@ -22,22 +22,25 @@
       (message "Opening remote file '%s'" file-name)
       (save-window-excursion
         (shell-command (concat "kioexec emacsclient " file-name "&"))))))
-)
+  )
 
-(defun th-saveemacsenv()
+(defun th-emacs-push()
   (interactive)
-  (shell-command (concat "cd ~/.emacs.d; git commit -a -m \"Autocommit from emacs\""))
-)
+  (shell-command (concat "cd ~/.emacs.d; git commit -a -m \"Autocommit from emacs\"; git push"))
+  )
 
+(defun th-emacs-pull()
+  (interactive)
+  (shell-command "cd ~/.emacs.d; git pull;")
+  )
 
 (defun th-prof (prof)
-        (interactive "sProfile, plz: ")
-	(load-file (concat "~/.emacs.d/profiles/" prof ".el"))
-)
+  (interactive "sProfile, plz: ")
+  (load-file (concat "~/.emacs.d/profiles/" prof ".el"))
+  )
 
 
-
-
-(defalias 'ffk 'th-find-file-kio )
-(defalias 'prof 'th-prof )
-(defalias 'gk   'th-saveemacsenv)
+(defalias 'ffk    'th-find-file-kio )
+(defalias 'prof   'th-prof )
+(defalias 'epush  'th-emacs-push)
+(defalias 'epull  'th-emacs-pull)

@@ -1,3 +1,6 @@
 [submodule "lua-mode"]
 	path = lua-mode
 	url = https://github.com/immerrr/lua-mode.git
+[submodule "auto-complete"]
+	path = auto-complete
+	url = https://github.com/m2ym/auto-complete.git

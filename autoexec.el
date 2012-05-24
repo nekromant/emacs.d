@@ -33,6 +33,15 @@
                 (setq indent-tabs-mode t)
                 (c-set-style "linux-tabs-only")))
 )
+
+(defun th-c-header(name)
+  (interactive)
+  (insert (concat "#ifndef __" name "__"))
+  (insert (concat "#define __" name "__"))
+  (insert "endif")
+)
+
+
 ;---
 
 (setq th-ffk-path '"~")
@@ -144,6 +153,13 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+
+; autocompletion
+
+(add-to-list 'load-path "~/.emacs.d/auto-complete")    ; This may not be appeared if you have already added.
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
+(require 'auto-complete-config)
+(ac-config-default)
 
 (defalias 'ffk    'th-find-file-kio )
 (defalias 'prof   'th-prof )

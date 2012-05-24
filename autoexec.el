@@ -153,10 +153,13 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+; popup module
+(add-to-list 'load-path "~/.emacs.d/popup-el")   
 
 ; autocompletion
 
 (add-to-list 'load-path "~/.emacs.d/auto-complete")    ; This may not be appeared if you have already added.
+(require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (require 'auto-complete-config)
 (ac-config-default)

@@ -19,4 +19,4 @@
 
 (defalias 'rr 'th-rr )
 
-(message "Welcome to rc module, dude!")
+(message "Welcome to RC Module, dude!")

@@ -3,7 +3,7 @@
 (transient-mark-mode 1) ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
-; This sets c-mode style to linux kernel coding style
+					; This sets c-mode style to linux kernel coding style
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
   (let* ((anchor (c-langelem-pos c-syntactic-element))
@@ -27,20 +27,71 @@
           (lambda ()
             (let ((filename (buffer-file-name)))
               ;; Enable kernel mode for the appropriate files
-              ;(when (and filename
-              ;           (string-match (expand-file-name "~/src/linux-trees")
-              ;                         filename))
-                (setq indent-tabs-mode t)
-                (c-set-style "linux-tabs-only")))
-)
+					;(when (and filename
+					;           (string-match (expand-file-name "~/src/linux-trees")
+					;                         filename))
+	      (setq indent-tabs-mode t)
+	      (c-set-style "linux-tabs-only")))
+	  )
 
 (add-to-list 'load-path "~/.emacs.d/doxymacs/lisp")
 (require 'doxymacs)
 (add-hook 'c-mode-common-hook'doxymacs-mode)
 (defun my-doxymacs-font-lock-hook ()
-    (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-        (doxymacs-font-lock)))
-  (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+  (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+      (doxymacs-font-lock)))
+(add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+
+
+(defun th-c-header(name)
+  (interactive "sHeader name: ")
+  (insert (concat "#ifndef __" name "_H\n"))
+  (insert (concat "#define __" name "_H\n\n"))
+  (insert "#endif\n")
+  (forward-line -2)
+  )
+
+
+(setq th-ffk-path '"~")
+(defun th-find-file-kio ()
+  (interactive)
+  (let ((file-name
+         (replace-regexp-in-string
+          "[\n]+" ""
+          (shell-command-to-string (concat "kdialog --getopenurl " th-ffk-path " 2> /dev/null")))))
+    (message file-name)
+    (cond
+     ((string-match "^file://" file-name)
+      ;; Work arround a bug in kioexec, which causes it to delete local
+      ;; files. (See bugs.kde.org, Bug 127894.) Because of this we open the
+      ;; file with `find-file' instead of emacsclient.
+      (let ((local-file-name (substring file-name 7)))
+        (message "Opening local file '%s'" local-file-name)
+	(setq th-ffk-path local-file-name )
+        (find-file local-file-name)))
+     ((string-match "^[:space:]*$" file-name)
+      (message "Empty file name given, doing nothing..."))
+     (t
+      (message "Opening remote file '%s'" file-name)
+      (save-window-excursion
+        (shell-command (concat "kioexec emacsclient " file-name "&"))))))
+  )
+
+(defun th-emacs-push()
+  (interactive)
+  (shell-command (concat "cd ~/.emacs.d; git commit -a -m \"Autocommit from emacs\"; git push"))
+  )
+
+(defun th-emacs-pull()
+  (interactive)
+  (shell-command "cd ~/.emacs.d; git pull --recurse-submodules=on;")
+  )
+
+(defun th-prof (prof)
+  (interactive "sProfile, plz: ")
+  (load-file (concat "~/.emacs.d/profiles/" prof ".el"))
+  )
+
 
 (defun th-reload()
   (interactive)
@@ -71,49 +122,49 @@
 
 (defun read-extra-mode(mode)
   (load-file (concat "~/.emacs.d/extramodes/" mode ".el" ))
-)
+  )
 
 (defun th-uisptool-info()
   (interactive)
   (shell-command "uisptool -i")
-)
+  )
 
 
 (defun th-spell-ru()
-(interactive)
-(setq flyspell-dictionary "russian")
-(ispell-buffer)
-)
+  (interactive)
+  (setq flyspell-dictionary "russian")
+  (ispell-buffer)
+  )
 
 (defun th-flyspell-en()
-(interactive)
-(setq flyspell-dictionary "english")
-(ispell-buffer)
-)
+  (interactive)
+  (setq flyspell-dictionary "english")
+  (ispell-buffer)
+  )
 
-; chmod +x current buffer filename
+					; chmod +x current buffer filename
 (defun th-chmodx()
-(interactive)
-(shell-command (concat "chmod +x " buffer-file-name))
-(message (concat "+x @ " buffer-file-name))
-) 
+  (interactive)
+  (shell-command (concat "chmod +x " buffer-file-name))
+  (message (concat "+x @ " buffer-file-name))
+  ) 
 
 
 (global-set-key [f10] 'th-flyspell-ru)
 (global-set-key [f9]  'th-flyspell-en)
 
 
-; lua mode subrepo and stuff
+					; lua mode subrepo and stuff
 
 (add-to-list 'load-path "~/.emacs.d/lua-mode/")
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
-; popup module
+					; popup module
 (add-to-list 'load-path "~/.emacs.d/popup-el")   
 
-; autocompletion
+					; autocompletion
 
 (add-to-list 'load-path "~/.emacs.d/auto-complete")    ; This may not be appeared if you have already added.
 (require 'auto-complete-config)

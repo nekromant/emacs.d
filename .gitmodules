@@ -7,3 +7,6 @@
 [submodule "popup-el"]
 	path = popup-el
 	url = https://github.com/m2ym/popup-el.git
+[submodule "doxymacs"]
+	path = doxymacs
+	url = git://doxymacs.git.sourceforge.net/gitroot/doxymacs/doxymacs

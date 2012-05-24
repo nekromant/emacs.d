@@ -35,10 +35,11 @@
 )
 
 (defun th-c-header(name)
-  (interactive)
-  (insert (concat "#ifndef __" name "__"))
-  (insert (concat "#define __" name "__"))
-  (insert "endif")
+  (interactive "sHeader name: ")
+  (insert (concat "#ifndef __" name "_H\n"))
+  (insert (concat "#define __" name "_H\n\n"))
+  (insert "#endif\n")
+  (forward-line -2)
 )
 
 
@@ -171,6 +172,8 @@
 (defalias 'reload 'th-reload)
 (defalias 'uinf   'th-uisptool-info)
 (defalias 'cx     'th-chmodx)
+(defalias 'hdr    'th-c-header)
+
 
 (read-extra-mode "php-mode" )
 (read-extra-mode "kconfig"  )

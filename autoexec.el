@@ -113,12 +113,37 @@
 )
 
 
+(defun th-spell-ru()
+(interactive)
+(setq flyspell-dictionary "russian")
+(ispell-buffer)
+)
+
+(defun th-flyspell-en()
+(interactive)
+(setq flyspell-dictionary "english")
+(ispell-buffer)
+)
+
+; chmod +x current buffer filename
+(defun th-chmodx()
+(interactive)
+(shell-command (concat "chmod +x " buffer-file-name))
+(message (concat "+x @ " buffer-file-name))
+) 
+
+
+(global-set-key [f10] 'th-flyspell-ru)
+(global-set-key [f9]  'th-flyspell-en)
+
 (defalias 'ffk    'th-find-file-kio )
 (defalias 'prof   'th-prof )
 (defalias 'epush  'th-emacs-push)
 (defalias 'epull  'th-emacs-pull)
 (defalias 'reload 'th-reload)
 (defalias 'uinf   'th-uisptool-info)
+(defalias 'cx     'th-chmodx)
+
 
 (read-extra-mode "php-mode" )
 (read-extra-mode "kconfig"  )

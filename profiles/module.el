@@ -13,7 +13,7 @@
 
 (defun th-emacs-pull()
   (interactive)
-  (shell-command "cd ~/.emacs.d; proxychains git pull;")
+  (shell-command "cd ~/.emacs.d; proxychains git pull --recurse-submodules=on;")
 )
 
 

@@ -67,7 +67,7 @@
 
 (defun th-emacs-pull()
   (interactive)
-  (shell-command "cd ~/.emacs.d; git pull;")
+  (shell-command "cd ~/.emacs.d; git pull --recurse-submodules=on;")
   )
 
 (defun th-prof (prof)
@@ -136,6 +136,15 @@
 (global-set-key [f10] 'th-flyspell-ru)
 (global-set-key [f9]  'th-flyspell-en)
 
+
+; lua mode subrepo and stuff
+
+(add-to-list 'load-path "~/.emacs.d/lua-mode/")
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+
+
 (defalias 'ffk    'th-find-file-kio )
 (defalias 'prof   'th-prof )
 (defalias 'epush  'th-emacs-push)
@@ -143,7 +152,6 @@
 (defalias 'reload 'th-reload)
 (defalias 'uinf   'th-uisptool-info)
 (defalias 'cx     'th-chmodx)
-
 
 (read-extra-mode "php-mode" )
 (read-extra-mode "kconfig"  )

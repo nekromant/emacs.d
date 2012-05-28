@@ -35,6 +35,13 @@
 	  )
 
 (add-to-list 'load-path "~/.emacs.d/doxymacs/lisp")
+(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
+
+(require 'color-theme) ;;подгружаем "модуль раскраски"
+(color-theme-initialize) ;;подгрузить библиотеку цветовых схем
+(color-theme-midnight) ;;выбрать конкретную схему
+
+
 (require 'doxymacs)
 (add-hook 'c-mode-common-hook'doxymacs-mode)
 (defun my-doxymacs-font-lock-hook ()
@@ -130,6 +137,14 @@
   )
 
 
+;(require 'msf-abbrev) ;;подгружаем "режим сокращений"
+;(setq-default abbrev-mode t) ;;ставим его подифолту
+;(setq save-abbrevs nil) ;;не надо записывать в дефолтный каталог наши сокращения
+;(setq msf-abbrev-root "~/.emacs.d/abb") ;;надо записывать их сюда
+;(global-set-key (kbd "C-c a") 'msf-abbrev-define-new-abbrev-this-mode) ;;(Ctrl-c a) для создания нового сокращения
+;(msf-abbrev-load) ;;пусть этот режим будет всегда :)
+
+
 (defun th-spell-ru()
   (interactive)
   (setq flyspell-dictionary "russian")
@@ -184,3 +199,5 @@
 
 (read-extra-mode "php-mode" )
 (read-extra-mode "kconfig"  )
+(read-extra-mode "php-electric")
+(php-electric-mode)

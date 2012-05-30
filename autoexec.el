@@ -200,4 +200,20 @@
 (read-extra-mode "php-mode" )
 (read-extra-mode "kconfig"  )
 (read-extra-mode "php-electric")
+(read-extra-mode "highlight-parentheses")
+
+(show-paren-mode)
+
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+(global-highlight-parentheses-mode t)
+
+(define-globalized-minor-mode global-show-paren-mode
+  show-paren-mode
+  (lambda ()
+    (show-paren-mode t)))
+(global-show-paren-mode t)
+
 (php-electric-mode)

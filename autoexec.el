@@ -215,5 +215,7 @@
   (lambda ()
     (show-paren-mode t)))
 (global-show-paren-mode t)
-
 (php-electric-mode)
+
+(global-set-key "\C-g" 'goto-line)
+(global-set-key "\C-b" 'ibuffer)

@@ -217,5 +217,22 @@
 (global-show-paren-mode t)
 (php-electric-mode)
 
+
+;(setq visible-bell t)
+
+
+(defun пыщ()
+  (let ((process-connection-type nil))  ; Use a pipe instead of pty
+       (shell-command-to-string "ogg123 /usr/share/sounds/KDE-Im-Message-In.ogg >/dev/null&"))
+)
+
+(setq ring-bell-function 'пыщ)
+
 (global-set-key "\C-g" 'goto-line)
 (global-set-key "\C-b" 'ibuffer)
+(global-set-key "\C-f" 'ffk)
+
+
+(global-set-key [M-up] 'beginning-of-defun)
+(global-set-key [M-down] 'end-of-defun)
+

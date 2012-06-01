@@ -62,10 +62,12 @@
 (setq th-ffk-path '"~")
 (defun th-find-file-kio ()
   (interactive)
+  (setq )
+  
   (let ((file-name
          (replace-regexp-in-string
           "[\n]+" ""
-          (shell-command-to-string (concat "kdialog --getopenurl " (buffer-file-name) " 2> /dev/null")))))
+          (shell-command-to-string (concat "kdialog --getopenurl " (concat "/" (buffer-file-name)) " 2> /dev/null")))))
     (message file-name)
     (cond
      ((string-match "^file://" file-name)

@@ -227,7 +227,6 @@
   (let ((process-connection-type nil))  ; Use a pipe instead of pty
        (shell-command-to-string "ogg123 /usr/share/sounds/KDE-Im-Message-In.ogg >/dev/null&"))
 )
-
 (setq ring-bell-function 'пыщ)
 
 (global-set-key "\C-g" 'goto-line)

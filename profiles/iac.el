@@ -1,10 +1,5 @@
-(defun th-rr (board)
-        (interactive "sBoard id, plz: ")
-        (let ((res (shell-command-to-string (concat "ssh str42.module.ru 'rrestart " board "'")))))
-)
-
 ; We need to override th-sync to use proxychains
-; or otherwise we're stuck
+; or otherwise we're stuck for good
 
 (defun th-emacs-push()
   (interactive)
@@ -16,8 +11,4 @@
   (shell-command "cd ~/.emacs.d; proxychains git pull --recurse-submodules=on;")
 )
 
-
-(defalias 'rr 'th-rr )
-(shell-command "setsid ~/bin/profile_switch module&")
-(message "Welcome to RC Module, dude!")
-
+(message "Welcome to IAC, dude!")

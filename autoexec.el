@@ -167,6 +167,20 @@
   ) 
 
 
+(defun th-usb-string-descriptor(text)
+  (interactive "sString, plz: ")
+  (insert "{\n")
+  (setq pos '2)
+  (loop for x in (string-to-list text)
+	do (insert (concat "'" (make-string 1 x) "', 0x0, "))
+	(setq pos (+ 2 pos))
+	)
+  (insert " };")
+  (beginning-of-line)
+  (insert (format "0x%X,\n0x03,\n" pos))
+)
+
+
 (global-set-key [f10] 'th-flyspell-ru)
 (global-set-key [f9]  'th-flyspell-en)
 
@@ -231,7 +245,9 @@
 
 (global-set-key "\C-g" 'goto-line)
 (global-set-key "\C-b" 'ibuffer)
-(global-set-key "\C-f" 'ffk)
+(global-set-key "\C-f" 'search-forward)
+(global-set-key "\C-r" 'search-backward)
+(global-set-key "\C-o" 'ffk)
 
 
 (global-set-key [M-up] 'beginning-of-defun)

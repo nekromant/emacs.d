@@ -86,21 +86,13 @@
         (shell-command (concat "kioexec emacsclient " file-name "&"))))))
   )
 
-(defun th-emacs-push()
-  (interactive)
-  (shell-command (concat "cd ~/.emacs.d; git commit -a -m \"Autocommit from emacs\"; git push"))
-  )
-
-(defun th-emacs-pull()
-  (interactive)
-  (shell-command "cd ~/.emacs.d; git pull --recurse-submodules=on;")
-  )
 
 (defun th-prof (prof)
   (interactive "sProfile, plz: ")
   (load-file (concat "~/.emacs.d/profiles/" prof ".el"))
   )
 
+(th-prof "default")
 
 (defun th-reload()
   (interactive)
@@ -217,6 +209,7 @@
 (read-extra-mode "kconfig"  )
 (read-extra-mode "php-electric")
 (read-extra-mode "highlight-parentheses")
+(read-extra-mode "mediawiki")
 
 (show-paren-mode)
 
@@ -233,9 +226,7 @@
 (global-show-paren-mode t)
 (php-electric-mode)
 
-
 ;(setq visible-bell t)
-
 
 (defun пыщ()
  (message "пыщ пыщ пыщ")
@@ -249,7 +240,6 @@
 (global-set-key "\C-f" 'search-forward)
 (global-set-key "\C-r" 'search-backward)
 (global-set-key "\C-o" 'ffk)
-
 
 (global-set-key [M-up] 'beginning-of-defun)
 (global-set-key [M-down] 'end-of-defun)

@@ -16,8 +16,13 @@
   (shell-command "cd ~/.emacs.d; proxychains git pull --recurse-submodules=on;")
 )
 
-
+(shell-command "xrandr --output VGA1 --right-of LVDS1")
 (defalias 'rr 'th-rr )
 (shell-command "setsid ~/bin/profile_switch module&")
+
 (message "Welcome to RC Module, dude!")
+
+(setq url-proxy-services
+       '(("http"     . "proxy:80")
+         ("no_proxy" . "^.*\\(aventail\\|seanet\\)\.com")))
 

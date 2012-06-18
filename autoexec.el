@@ -235,6 +235,14 @@
 )
 (setq ring-bell-function 'пыщ)
 
+
+(defun th-open-aeel ()
+  (interactive)
+  (find-file "~/.emacs.d/autoexec.el")
+)
+
+(defalias 'emd 'th-open-aeel)
+
 (global-set-key "\C-g" 'goto-line)
 (global-set-key "\C-b" 'ibuffer)
 (global-set-key "\C-f" 'search-forward)
@@ -243,4 +251,9 @@
 
 (global-set-key [M-up] 'beginning-of-defun)
 (global-set-key [M-down] 'end-of-defun)
+
+
+(defun th-yakuake-newsession(title)
+  (message (shell-command-to-string "qdbus org.kde.yakuake /yakuake/sessions org.kde.yakuake.addSession"))
+)
 

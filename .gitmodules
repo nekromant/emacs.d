@@ -10,3 +10,6 @@
 [submodule "doxymacs"]
 	path = doxymacs
 	url = git://doxymacs.git.sourceforge.net/gitroot/doxymacs/doxymacs
+[submodule "plugins/yasnippet"]
+	path = plugins/yasnippet
+	url = git://github.com/capitaomorte/yasnippet.git

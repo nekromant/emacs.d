@@ -105,7 +105,7 @@
 (defun th-reload()
   (interactive)
   (message "Rerunning autoexec")
-  (load-file "~/.emacs.d/autoexec.el");
+  (load-file "~/.emacs.d/init.el");
   )
 
 

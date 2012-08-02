@@ -1,9 +1,17 @@
+(add-to-list 'load-path
+              "~/.emacs.d/plugins/yasnippet")
+;;(require 'yasnippet)
+;;(yas/global-mode 1)
+
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
-					; This sets c-mode style to linux kernel coding style
+(setq x-select-enable-clipboard t) ; as above
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+
+; This sets c-mode style to linux kernel coding style
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
   (let* ((anchor (c-langelem-pos c-syntactic-element))
@@ -210,6 +218,7 @@
 (read-extra-mode "php-electric")
 (read-extra-mode "highlight-parentheses")
 (read-extra-mode "mediawiki")
+(read-extra-mode "tempo")
 
 (show-paren-mode)
 
@@ -252,6 +261,7 @@
 (global-set-key [M-up] 'beginning-of-defun)
 (global-set-key [M-down] 'end-of-defun)
 
+(server-start)
 
 (defun th-yakuake-newsession(title)
   (message (shell-command-to-string "qdbus org.kde.yakuake /yakuake/sessions org.kde.yakuake.addSession"))

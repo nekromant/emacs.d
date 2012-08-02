@@ -15,7 +15,8 @@
   (interactive)
   (shell-command "cd ~/.emacs.d; proxychains git pull --recurse-submodules=on;")
 )
-
+(shell-command "xrandr --auto")
+(shell-command "sleep 5")
 (shell-command "xrandr --output VGA1 --right-of LVDS1")
 (defalias 'rr 'th-rr )
 (shell-command "setsid ~/bin/profile_switch module&")

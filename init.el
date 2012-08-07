@@ -219,6 +219,7 @@
 (read-extra-mode "highlight-parentheses")
 (read-extra-mode "mediawiki")
 (read-extra-mode "tempo")
+(read-extra-mode "smooth-scroll")
 
 (show-paren-mode)
 
@@ -266,4 +267,5 @@
 (defun th-yakuake-newsession(title)
   (message (shell-command-to-string "qdbus org.kde.yakuake /yakuake/sessions org.kde.yakuake.addSession"))
 )
+
 

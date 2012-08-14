@@ -1,7 +1,7 @@
 (add-to-list 'load-path
               "~/.emacs.d/plugins/yasnippet")
-;;(require 'yasnippet)
-;;(yas/global-mode 1)
+(add-to-list 'load-path
+              "~/.emacs.d/themes")
 
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
@@ -47,7 +47,10 @@
 
 (require 'color-theme) ;;подгружаем "модуль раскраски"
 (color-theme-initialize) ;;подгрузить библиотеку цветовых схем
-(color-theme-midnight) ;;выбрать конкретную схему
+(require 'color-theme-sweyla)
+(color-theme-sweyla)
+
+
 
 
 (require 'doxymacs)

@@ -19,7 +19,6 @@
 (shell-command "sleep 5")
 (shell-command "xrandr --output VGA1 --right-of LVDS1")
 (defalias 'rr 'th-rr )
-(shell-command "setsid ~/bin/profile_switch module&")
 
 (message "Welcome to RC Module, dude!")
 

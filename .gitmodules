@@ -13,3 +13,12 @@
 [submodule "plugins/yasnippet"]
 	path = plugins/yasnippet
 	url = git://github.com/capitaomorte/yasnippet.git
+[submodule "git-commit-mode"]
+	path = git-commit-mode
+	url = git://github.com/rafl/git-commit-mode.git
+[submodule "master"]
+	path = master
+	url = git://github.com/rafl/git-commit-mode.git
+[submodule "extramodes/git-commit-mode"]
+	path = extramodes/git-commit-mode
+	url = git://github.com/rafl/git-commit-mode.git

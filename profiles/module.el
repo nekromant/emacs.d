@@ -20,9 +20,11 @@
 (shell-command "xrandr --output VGA1 --right-of LVDS1")
 (defalias 'rr 'th-rr )
 
+(desktop-change-dir "~/.emacs.d/profiles/")
 (message "Welcome to RC Module, dude!")
 
 (setq url-proxy-services
        '(("http"     . "proxy:80")
          ("no_proxy" . "^.*\\(aventail\\|seanet\\)\.com")))
+
 

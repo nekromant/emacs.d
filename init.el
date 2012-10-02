@@ -170,6 +170,16 @@
   ) 
 
 
+(defun switch-to-minibuffer-window ()
+  "switch to minibuffer window (if active)"
+  (interactive)
+  (when (active-minibuffer-window)
+    (select-window (active-minibuffer-window))))
+
+(global-set-key (kbd "s-x") 'switch-to-minibuffer-window)
+
+
+
 (defun th-usb-string-descriptor(text)
   (interactive "sString, plz: ")
   (insert "{\n")
@@ -223,7 +233,7 @@
 (read-extra-mode "mediawiki")
 (read-extra-mode "tempo")
 (read-extra-mode "smooth-scroll")
-
+(read-extra-mode "git-commit-mode/git-commit")
 (show-paren-mode)
 
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -271,4 +281,28 @@
   (message (shell-command-to-string "qdbus org.kde.yakuake /yakuake/sessions org.kde.yakuake.addSession"))
 )
 
+;; save a list of open files in ~/.emacs.desktop
+;; save the desktop file automatically if it already exists
+(setq desktop-save 'if-exists)
+(desktop-save-mode 1)
+
+;; save a bunch of variables to the desktop file
+;; for lists specify the len of the maximal saved data also
+(setq desktop-globals-to-save
+      (append '((extended-command-history . 30)
+                (file-name-history        . 100)
+                (grep-history             . 30)
+                (compile-history          . 30)
+                (minibuffer-history       . 50)
+                (query-replace-history    . 60)
+                (read-expression-history  . 60)
+                (regexp-history           . 60)
+                (regexp-search-ring       . 20)
+                (search-ring              . 20)
+                (shell-command-history    . 50)
+                tags-file-name
+                register-alist)))
+
+(add-hook 'git-commit-mode-hook 'turn-on-flyspell)
+(add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
 

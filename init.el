@@ -1,46 +1,17 @@
 (add-to-list 'load-path
-              "~/.emacs.d/plugins/yasnippet")
+	     "~/.emacs.d/plugins/yasnippet")
 (add-to-list 'load-path
-              "~/.emacs.d/themes")
+	     "~/.emacs.d/themes")
 
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
-(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
+;;(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
-(setq x-select-enable-clipboard t) ; as above
+(setq interprogram-cut-function 'own-clipboard)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
-; This sets c-mode style to linux kernel coding style
-(defun c-lineup-arglist-tabs-only (ignored)
-  "Line up argument lists by tabs, not spaces"
-  (let* ((anchor (c-langelem-pos c-syntactic-element))
-	 (column (c-langelem-2nd-pos c-syntactic-element))
-	 (offset (- (1+ column) anchor))
-	 (steps (floor offset c-basic-offset)))
-    (* (max steps 1)
-       c-basic-offset)))
-
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            ;; Add kernel style
-            (c-add-style
-             "linux-tabs-only"
-             '("linux" (c-offsets-alist
-                        (arglist-cont-nonempty
-                         c-lineup-gcc-asm-reg
-                         c-lineup-arglist-tabs-only))))))
-
-(add-hook 'c-mode-hook
-          (lambda ()
-            (let ((filename (buffer-file-name)))
-              ;; Enable kernel mode for the appropriate files
-					;(when (and filename
-					;           (string-match (expand-file-name "~/src/linux-trees")
-					;                         filename))
-	      (setq indent-tabs-mode t)
-	      (c-set-style "linux-tabs-only")))
-	  )
+(setq c-default-style "linux")
 
 (add-to-list 'load-path "~/.emacs.d/doxymacs/lisp")
 (add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0/")
@@ -49,7 +20,6 @@
 (color-theme-initialize) ;;подгрузить библиотеку цветовых схем
 (require 'color-theme-sweyla)
 (color-theme-sweyla)
-
 
 
 
@@ -142,12 +112,12 @@
   )
 
 
-;(require 'msf-abbrev) ;;подгружаем "режим сокращений"
-;(setq-default abbrev-mode t) ;;ставим его подифолту
-;(setq save-abbrevs nil) ;;не надо записывать в дефолтный каталог наши сокращения
-;(setq msf-abbrev-root "~/.emacs.d/abb") ;;надо записывать их сюда
-;(global-set-key (kbd "C-c a") 'msf-abbrev-define-new-abbrev-this-mode) ;;(Ctrl-c a) для создания нового сокращения
-;(msf-abbrev-load) ;;пусть этот режим будет всегда :)
+					;(require 'msf-abbrev) ;;подгружаем "режим сокращений"
+					;(setq-default abbrev-mode t) ;;ставим его подифолту
+					;(setq save-abbrevs nil) ;;не надо записывать в дефолтный каталог наши сокращения
+					;(setq msf-abbrev-root "~/.emacs.d/abb") ;;надо записывать их сюда
+					;(global-set-key (kbd "C-c a") 'msf-abbrev-define-new-abbrev-this-mode) ;;(Ctrl-c a) для создания нового сокращения
+					;(msf-abbrev-load) ;;пусть этот режим будет всегда :)
 
 
 (defun th-spell-ru()
@@ -191,7 +161,7 @@
   (insert " };")
   (beginning-of-line)
   (insert (format "0x%X,\n0x03,\n" pos))
-)
+  )
 
 
 (global-set-key [f10] 'th-flyspell-ru)
@@ -252,20 +222,20 @@
 (global-show-paren-mode t)
 (php-electric-mode)
 
-;(setq visible-bell t)
+					;(setq visible-bell t)
 
 (defun пыщ()
- (message "пыщ пыщ пыщ")
- ; (let ((process-connection-type nil))  ; Use a pipe instead of pty
-  ;     (shell-command-to-string "ogg123 /usr/share/sounds/KDE-Im-Message-In.ogg >/dev/null&"))
-)
+  (message "пыщ пыщ пыщ")
+					; (let ((process-connection-type nil))  ; Use a pipe instead of pty
+					;     (shell-command-to-string "ogg123 /usr/share/sounds/KDE-Im-Message-In.ogg >/dev/null&"))
+  )
 (setq ring-bell-function 'пыщ)
 
 
 (defun th-open-aeel ()
   (interactive)
   (find-file "~/.emacs.d/autoexec.el")
-)
+  )
 
 (defalias 'emd 'th-open-aeel)
 
@@ -282,7 +252,7 @@
 
 (defun th-yakuake-newsession(title)
   (message (shell-command-to-string "qdbus org.kde.yakuake /yakuake/sessions org.kde.yakuake.addSession"))
-)
+  )
 
 ;; save a list of open files in ~/.emacs.desktop
 ;; save the desktop file automatically if it already exists
@@ -321,3 +291,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+

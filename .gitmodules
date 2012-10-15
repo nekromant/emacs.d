@@ -3,7 +3,7 @@
 	url = https://github.com/immerrr/lua-mode.git
 [submodule "auto-complete"]
 	path = auto-complete
-	url = https://github.com/m2ym/auto-complete.git
+	url = https://github.com/auto-complete/auto-complete
 [submodule "popup-el"]
 	path = popup-el
 	url = https://github.com/m2ym/popup-el.git

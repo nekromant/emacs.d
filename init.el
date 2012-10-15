@@ -227,13 +227,16 @@
 
 
 (read-extra-mode "php-mode" )
+(read-extra-mode "fill-column-indicator" )
 (read-extra-mode "kconfig"  )
 (read-extra-mode "php-electric")
 (read-extra-mode "highlight-parentheses")
 (read-extra-mode "mediawiki")
 (read-extra-mode "tempo")
 (read-extra-mode "smooth-scroll")
+
 (read-extra-mode "git-commit-mode/git-commit")
+(setq fci-rule-column 80)
 (show-paren-mode)
 
 (define-globalized-minor-mode global-highlight-parentheses-mode
@@ -306,3 +309,15 @@
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

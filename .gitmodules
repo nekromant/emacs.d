@@ -4,9 +4,6 @@
 [submodule "auto-complete"]
 	path = auto-complete
 	url = https://github.com/auto-complete/auto-complete
-[submodule "popup-el"]
-	path = popup-el
-	url = https://github.com/m2ym/popup-el.git
 [submodule "doxymacs"]
 	path = doxymacs
 	url = git://doxymacs.git.sourceforge.net/gitroot/doxymacs/doxymacs

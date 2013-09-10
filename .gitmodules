@@ -19,3 +19,6 @@
 [submodule "extramodes/git-commit-mode"]
 	path = extramodes/git-commit-mode
 	url = git://github.com/rafl/git-commit-mode.git
+[submodule "paste-kde"]
+	path = paste-kde
+	url = ./paste-kde

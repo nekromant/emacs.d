@@ -1,4 +1,4 @@
-(defun th-rr (board)
+(defun rr (board)
         (interactive "sBoard id, plz: ")
         (let ((res (shell-command-to-string (concat "ssh str42.module.ru 'rrestart " board "'")))))
 )
@@ -17,13 +17,6 @@
   (shell-command "cd ~/.emacs.d; proxychains git submodule update --init")
 )
 
-
-(shell-command "xrandr --auto")
-(shell-command "sleep 5")
-(shell-command "xrandr --output VGA1 --right-of LVDS1")
-(defalias 'rr 'th-rr )
-
-(desktop-change-dir "~/.emacs.d/profiles/")
 (message "Welcome to RC Module, dude!")
 
 (setq url-proxy-services

@@ -8,7 +8,7 @@
 (transient-mark-mode 1) ;; No region when it is not highlighted
 ;;(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
-(setq interprogram-cut-function 'own-clipboard)
+(setq x-select-enable-clipboard t) ; as above
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (setq c-default-style "linux")
@@ -244,6 +244,14 @@
 (global-set-key "\C-f" 'search-forward)
 (global-set-key "\C-r" 'search-backward)
 (global-set-key "\C-o" 'ffk)
+
+(defun refresh-file ()
+  (interactive)
+  (revert-buffer t t t)
+  )
+
+(global-set-key [f5] 'refresh-file)
+
 
 (global-set-key [M-up] 'beginning-of-defun)
 (global-set-key [M-down] 'end-of-defun)
